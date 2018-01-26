@@ -1,6 +1,10 @@
+//I forgot that we needed to include the .h file -Dan
+#include "file_utilities.h"
+
+
 int read_file( char* filename, char** buffer){
 	//used some code from CIS 241
-	File *in;
+	FILE *in;
 
 	in = fopen("blank1010.txt", "r");
 	if(in == NULL){
@@ -9,13 +13,17 @@ int read_file( char* filename, char** buffer){
 	}
 	int columns;
 	int rows;
-	fscanf(in, %d, &columns);
-	fscanf(in, %d, &rows);
+	fscanf(in,"%d", &columns);
+	fscanf(in, "%d", &rows);
 	int* map=malloc(sizeof(int*)*rows);
 	int z=0;
 	for(int z=0;z<rows;z+=1){
 	  map[z]=malloc(sizeof(char)*columns);
 	}
+	//fscanf(in, "%d", &columns);
+	//fscanf(in, "%d", &rows);
+	//char* map = malloc(rows * columns * sizeof(char));
+	//char map[rows][columns];
 	int x;
 	int y;
 	//aasked Brendon Murthum and Tanner Gibson about fscanf
@@ -27,7 +35,7 @@ int read_file( char* filename, char** buffer){
 	}
 
 	free(*buffer);
-	*buffer = &map;
+	*buffer = map;
 
 	for(x = 0; x < rows; x++){
 		for(y = 0; y < columns; y++){
