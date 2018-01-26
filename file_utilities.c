@@ -15,15 +15,17 @@ int read_file( char* filename, char** buffer){
 	int rows;
 	fscanf(in, "%d", &columns);
 	fscanf(in, "%d", &rows);
-	//char* map = malloc(rows * columns * sizeof(char));
-	char map[rows][columns];
+	//https://stackoverflow.com/questions/10575544/difference-between-array-type-and-array-allocated-with-malloc
+	//used Stack Overflow to decide how to create the 2d arrayi
+	char* map = malloc(rows * columns * sizeof(char));
+	//char map[rows][columns];
 	int x;
 	int y;
 	//aasked Brendon Murthum and Tanner Gibson about fscanf
 	//went to tutorialspoint.com to confirm that C for loops are created like java and C++ for loops
 	for(x = 0; x < rows; x++ ){
 		for(y = 0; y < columns; y++){
-			fscanf(in, "%c", map[x][y]);
+			fscanf(in, "%c", map[(x * rows) + y]);
 		}
 	}
 
@@ -32,7 +34,7 @@ int read_file( char* filename, char** buffer){
 
 	for(x = 0; x < rows; x++){
 		for(y = 0; y < columns; y++){
-			fprintf("%c", map[x][y]);
+			printf("%c", map[(x * rows) + y]);
 		}
 	
 	}
