@@ -13,11 +13,13 @@ int read_file( char* filename, char** buffer){
 	}
 	int columns;
 	int rows;
-	fscanf(in, "%d", &columns);
+	fscanf(in,"%d", &columns);
 	fscanf(in, "%d", &rows);
+
 	//https://stackoverflow.com/questions/10575544/difference-between-array-type-and-array-allocated-with-malloc
 	//used Stack Overflow to decide how to create the 2d arrayi
 	char* map = malloc(rows * columns * sizeof(char));
+
 	//char map[rows][columns];
 	int x;
 	int y;
