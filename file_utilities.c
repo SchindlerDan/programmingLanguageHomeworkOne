@@ -46,8 +46,20 @@ int read_file( char* filename, char** buffer){
 
 
 int write_file( char* filename, char *buffer, int size){
+	FILE *out;
+	//Once again used some code from a CIS 241 assignment
+	out =fopen(filename, "w");
 
+	if(out == NULL){
+	printf("File could not be found or created");
+	}
+	
+	int i = 0;
 
+	for(i = 0; i < size; i++){
+		fprintf(out, "%c", buffer[i]);
+		fprintf(out, " ");
+	}
 
 
 }
