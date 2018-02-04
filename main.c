@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include "file_utilities.h"
 #include "simLogic.h"
+#include "simLogic.c"
 int main(int argc, const char** argv)
 {
 
-    int numRow = argv[1];
-    int numCol = argv[2];
+    int numRow = (int)argv[1];
+    int numCol = (int)argv[2];
 
 
 
@@ -24,8 +25,8 @@ int main(int argc, const char** argv)
     if(argc>2)
     {
         //I wrote this  -emy
-      const char* filename= argv[3];
-        
+      char* filename= argv[3];
+
         read_file(filename, boardTotal);
     }else{
     printf("Please enter the number of rows you would like");
@@ -54,8 +55,13 @@ int main(int argc, const char** argv)
         }
         else if(choice =='r'){
             printf("hi");
+            times=1;
         }else if(choice == 'm'){
-	    printf("hello there");
+            //it wont just take times but it will work if i do this
+            int input;
+            printf("enter number of generations");
+            scanf("%d", &input);
+            times=input;
 	}else if(choice == 'w'){
 		printf("salutations friend");
 	}else if(choice == 'a'){
@@ -65,6 +71,7 @@ int main(int argc, const char** argv)
 
         for(times;times>0;times--)
         {
+              simulate(boardTotal,rows,columns);
             //for loop for checking death rates and breeding rates
         }
 

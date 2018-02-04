@@ -28,7 +28,7 @@ int simulate(char** board, int rows, int columns){
 			if(*board[1 + columns] == 'o'){
 				count++;
 			}
-	
+
 			if(*board[i + columns + 1] == 'o'){//this checks diagonally down right. spot '5' on a 3x3 grid
 				count++;
 
@@ -37,7 +37,7 @@ int simulate(char** board, int rows, int columns){
 		}
 		//this is the second major special case, the last cell. cell 9 on a 3x3 grid
 		else if(i == (rows * columns) - 1){
-			/
+
 			if(*board[i - 1] == 'o'){
 				count++;
 			}
@@ -48,8 +48,8 @@ int simulate(char** board, int rows, int columns){
 			if(*board[i - (columns + 1)] == 'o'){
 				count ++;
 			}
-			
-			
+
+
 		}
 
 		//these ifs will check the top right spot. spot 3 on a 3x3 grid
@@ -65,8 +65,8 @@ int simulate(char** board, int rows, int columns){
 			if(*board[i + (columns - 2)] == 'o'){
 				count++;
 			}
-			
-			
+
+
 		}
 		//these ifs will check the bottom left spot. Spot 7 on a 3x3 grid
 		else if(i == (rows * columns) - (columns - 1) - 1){
@@ -82,11 +82,11 @@ int simulate(char** board, int rows, int columns){
                                 count++;
                         }
 
-			
+
 		}
 		//these ifs will check the rest of the top row. Spot 2 on a 3x3 grid
 		else if(i > 1 && i < columns - 1){
-			
+
 			if(*board[i - 1] == 'o'){
                                 count++;
                         }
@@ -108,8 +108,8 @@ int simulate(char** board, int rows, int columns){
                                 count++;
                         }
 
-                       
-	
+
+
 
 		}
 		//these ifs will check the rest of the bottom row. Spot 8 on a 3x3 grid
@@ -134,9 +134,9 @@ int simulate(char** board, int rows, int columns){
                                 count++;
                         }
 
-                        
-			
-			
+
+
+
 		}
 		//these ifs will check the rest of the left hand column. Spot 4 on a 3x3 grid
 		else if(i % columns == 0){
@@ -160,11 +160,11 @@ int simulate(char** board, int rows, int columns){
                                 count++;
                         }
 
-                        
+
 		}
 		//these ifs will check the rest of the right hand column. spot 6 on a 3x3 grid
 		else if(i % (columns - 1) == 0){
-			
+
 
 
                         if(*board[i + columns] == 'o'){
@@ -226,13 +226,13 @@ int simulate(char** board, int rows, int columns){
 		}
 
 
-	
+
 
 	//these next two ifs decide if the cell changes states (from live to dead or the other way around)
 	if(*board[i] == 'o' && count > 3 || count < 2){
-		*board[i] == 'x'
+		*board[i] == 'x';
 	}else if(*board[i] == 'x' && count == 3){
-		*board[i] == 'o'
+		*board[i] == 'o';
 	}
 
 
