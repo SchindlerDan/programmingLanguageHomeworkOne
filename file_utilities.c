@@ -53,6 +53,7 @@ int read_file( char* filename, char** buffer)
 
 int write_file( char* filename, char *buffer, int size)
 {
+    //when we call this method from our main, we need to construct a new array in the main that includes the row and column numbers as the first two characters
     FILE *out;
     //Once again used some code from a CIS 241 assignment
     out =fopen(filename, "w");
