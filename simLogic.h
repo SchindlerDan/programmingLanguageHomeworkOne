@@ -4,9 +4,9 @@
 #define _LifeGame_
 #include <stdio.h>
 #include <stdlib.h>
-#include"simLogic.c"
+//#include"simLogic.c"
 
 
 int simulate(char** board, int rows, int columns);
-
+int displayBoard(char** board, int rows, int columns);
 #endif
