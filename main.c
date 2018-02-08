@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "file_utilities.h"
 #include "simLogic.h"
-#include "simLogic.c"
+
 int main(int argc, const char** argv)
 {
 
@@ -17,30 +17,35 @@ int main(int argc, const char** argv)
     //next three variables are pointers for the board as well as the previous board
     char** boardTotal;
     char* boardIndividual;
-    char* boardBackup;
+    
+	char* boardBackup;
     char choice;
     int rows;
     int columns;
 	int i;
-	boardTotal = malloc(1 * sizeof(char*));
+	//boardTotal = malloc(1 * sizeof(char*));
 //to see if it starts on a load
     if(argc>2)
     {
         //I wrote this  -emy
       char* filename = argv[1];
-
+	
         read_file(filename, boardTotal);
     }else{
     printf("Please enter the number of rows you would like: \n");
     scanf("%d", &rows);
     printf("Please enter the number of columns you would like: \n");
     scanf("%d", &columns);
-    boardIndividual = malloc(rows * columns * sizeof(char));
-    *boardTotal = boardIndividual;
+	printf("%d %d are the dimensions of your board", rows, columns);
+    boardIndividual = (char *)malloc(rows * columns * sizeof(char));
+    //boardTotal = &boardIndividual;
     	for(i = 0; i < rows * columns; i++){
-		boardIndividual[i] = 'x';
-		printf("%d ", i);
+		boardIndividual[i] = 120;
+		printf("%d \n", i);
+		printf("%c is the character in that index\n", boardIndividual[i]);
+		//printf("%u is the address of that index\n", boardIndividual[i]);
 	}
+	boardIndividual[3] = 'o';
 	}	
     int quit = 0;
     while(quit == 0)
@@ -54,6 +59,9 @@ int main(int argc, const char** argv)
         //https://stackoverflow.com/questions/20712572/how-to-ignore-whitespaces-in-fscanf
         scanf(" %c", &choice);
         //do the selection
+        //
+        //printf("%u is the address of our array\n", boardIndividual[0]);
+	//printf("%u is the address of a deeper point in our array\n", boardIndividual[1]);
        if(choice=='q')
         {
             printf("bye\n");
@@ -80,12 +88,18 @@ int main(int argc, const char** argv)
 
         for(times;times>0;times--)
         {
-		printf("We made it to the loop");
-              simulate(boardTotal,rows,columns);
+		printf("We made it to the loop\n");
+              simulate(boardIndividual, rows, columns);
             //for loop for checking death rates and breeding rates
         }
-	displayBoard(boardTotal, rows, columns);
-
+	//displayBoard(&boardIndividual, rows, columns);
+	for(times = 0; times < rows * columns; times++){
+		if(times % (columns) == 0){
+			printf("\n");
+		}
+		printf("%c ", boardIndividual[times]);
+	
+	}
     }
 
 	free(boardIndividual);
