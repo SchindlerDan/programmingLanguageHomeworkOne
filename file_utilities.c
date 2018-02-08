@@ -1,9 +1,7 @@
 //I forgot that we needed to include the .h file -Dan
 #include "file_utilities.h"
 
-
-int read_file( char* filename, char** buffer)
-{
+int read_file( char* filename, char** buffer){
     //used some code from CIS 241
     FILE *in;
 //TODO add a input to take in a string
@@ -47,8 +45,8 @@ int read_file( char* filename, char** buffer)
         }
 
     }
+    return 0;
 }
-
 
 
 int write_file( char* filename, char *buffer, int size)
@@ -70,5 +68,5 @@ int write_file( char* filename, char *buffer, int size)
         fprintf(out, "%c", buffer[i]);
         fprintf(out, " ");
     }
-
+return 0;
 }

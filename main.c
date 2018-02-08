@@ -17,7 +17,7 @@ int main(int argc, const char** argv)
     //next three variables are pointers for the board as well as the previous board
     char** boardTotal;
     char* boardIndividual;
-    
+
 	char* boardBackup;
     char choice;
     int rows;
@@ -29,7 +29,7 @@ int main(int argc, const char** argv)
     {
         //I wrote this  -emy
       char* filename = argv[1];
-	
+
         read_file(filename, boardTotal);
     }else{
     printf("Please enter the number of rows you would like: \n");
@@ -46,8 +46,17 @@ int main(int argc, const char** argv)
 		//printf("%u is the address of that index\n", boardIndividual[i]);
 	}
 	boardIndividual[3] = 'o';
-	}	
-    int quit = 0;
+	}
+	int quit = 0;
+    int times = 0;
+    for(times = 0; times < rows * columns; times++){
+		if(times % (columns) == 0){
+			printf("\n");
+		}
+		printf("%c ", boardIndividual[times]);
+
+	}
+
     while(quit == 0)
     {
         //char choice;
@@ -82,14 +91,14 @@ int main(int argc, const char** argv)
 		printf("Let us get this party started");
 	}else if(choice == 'l'){
 		printf("Hello friendo");
-		
+
 	}
 
 
         for(times;times>0;times--)
         {
 		printf("We made it to the loop\n");
-              simulate(boardIndividual, rows, columns);
+              boardIndividual=simulate(boardIndividual, rows, columns);
             //for loop for checking death rates and breeding rates
         }
 	//displayBoard(&boardIndividual, rows, columns);
@@ -98,7 +107,7 @@ int main(int argc, const char** argv)
 			printf("\n");
 		}
 		printf("%c ", boardIndividual[times]);
-	
+
 	}
     }
 

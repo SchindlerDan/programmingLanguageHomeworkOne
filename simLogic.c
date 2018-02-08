@@ -36,7 +36,7 @@ simulate(char* board, int rows, int columns){
 	//		printf("1\n");
 	//		printf("%c is the character in the board\n", board[1]);
 			if(board[1] == 111){
-				
+
 				count++;
 			}
 			printf("2\n");
@@ -220,7 +220,7 @@ simulate(char* board, int rows, int columns){
 
 
 		}
-	
+
 		//these ifs will check the rest of the board. Spot 5 on a 3x3 grid
 		else{
 	//		 printf("On to the body of cell\n");
@@ -262,10 +262,10 @@ simulate(char* board, int rows, int columns){
 
 	printf("checking if a cell should live or die\n");
 	//these next two ifs decide if the cell changes states (from live to dead or the other way around)
-	if(board[i] == 'o' && count > 3 || count < 2){
-		board[i] == 'x';
-	}else if(board[i] == 'x' && count == 3){
-		board[i] == 'o';
+	if(&board[i] == 'o' && count > 3 || count < 2){
+		board[i] = 'x';
+	}else if(&board[i] == 'x' && count == 3){
+		board[i] = 'o';
 	}
 
 
@@ -278,7 +278,7 @@ simulate(char* board, int rows, int columns){
 
 
 
-	return 1;
+	return board;
 }
 
 
