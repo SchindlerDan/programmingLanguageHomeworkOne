@@ -46,6 +46,8 @@ int main(int argc, const char** argv)
 		//printf("%u is the address of that index\n", boardIndividual[i]);
 	}
 	boardIndividual[3] = 'o';
+	boardIndividual[0] = 'o';
+	boardIndividual[1] = 'o';
 	}	
     int quit = 0;
     while(quit == 0)
@@ -56,7 +58,7 @@ int main(int argc, const char** argv)
         printf("q to quit, w to write, a to add a living cell, r to run one time, m to run many times, l to load: \n");
         //take input entered
         //stack overflow to figure out how to ignore extra white space
-        //https://stackoverflow.com/questions/20712572/how-to-ignore-whitespaces-in-fscanf
+        i//https://stackoverflow.com/questions/20712572/how-to-ignore-whitespaces-in-fscanf
         scanf(" %c", &choice);
         //do the selection
         //
@@ -77,19 +79,43 @@ int main(int argc, const char** argv)
             scanf("%d", &input);
             times=input;
 	}else if(choice == 'w'){
-		printf("salutations friend");
-	}else if(choice == 'a'){
-		printf("Let us get this party started");
-	}else if(choice == 'l'){
-		printf("Hello friendo");
+		fget(fileName, 100, stdin);
 		
-	}
+		
+		scanf("%[^\n]%*c", fileName);
+		boardBackup = malloc(2 + (sizeof(char) * rows * columns));
+		boardBackup[0] = rows;
+		boardBackup[1] = columns;
+		for(i = 0; i < (rows * columns); i++){
+			boardBackup[i + 2] = boardIndividual[i];
+		}
+		write_file(fileName, boardBackup, rows * columns);
+		printf("salutations friend, saving complete");
+	}else if(choice == 'a'){
+		int x;
+		int y;
+		char cont = 'y';
+		while('y' == cont || 'Y' == cont){
+			printf("Please enter the X coordinate");
+			scanf("%d", &x);
+			printf("Please enter the Y coordinate");
+			scanf("%d", &y);
+			boardIndividual[(y * columns) + x] = 'o';	
+	}	
+		
+		printf("Let us get this party started");
+		displayBoard(&boardIndividual, rows, columns);
+	}//removed load here because we already have load as a command line input
+	//else if(choice == 'l'){
+	//	printf("Hello friendo");
+		
+	//}
 
 
         for(times;times>0;times--)
         {
 		printf("We made it to the loop\n");
-              simulate(boardIndividual, rows, columns);
+              simulate(&boardIndividual, rows, columns);
             //for loop for checking death rates and breeding rates
         }
 	//displayBoard(&boardIndividual, rows, columns);

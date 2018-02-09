@@ -11,21 +11,23 @@
 
 
 
-simulate(char* board, int rows, int columns){
+simulate(char** boardx, int rows, int columns){
+	char* board = *boardx;
 	int size = (rows * columns);
 	int i= 0;
 	//this for loop will have several if statements. Each if statement is used to help prevent an index out of bounds error. example: if( i < columns) then don't check for any above cells
 	int count;
 	//printf("%u is the address of our board \n", **board);
 	//printf("%u is the address of a farther spot in our array", *(board + 1));
-	for(i = 0; i < size; i++){
-		printf("%d is the size\n", size);
-	}
+	//for(i = 0; i < size; i++){
+	//	printf("%d is the size\n", size);
+	//}
 
 
 	//printf("we made it to simLogic!\n");
 	//printf("%c is the characer on the board\n", board[1]);
 	for(i = 0; i < size; i++){
+		 printf("The cell is %c \n", board[i]);
 	//	printf("does this print?\n");
 		//used to track number of living cells nearby
 		count = 0;
@@ -264,8 +266,10 @@ simulate(char* board, int rows, int columns){
 	//these next two ifs decide if the cell changes states (from live to dead or the other way around)
 	if(board[i] == 'o' && count > 3 || count < 2){
 		board[i] == 'x';
+		printf("IT DIES");
 	}else if(board[i] == 'x' && count == 3){
 		board[i] == 'o';
+		printf("ITS ALIVE!");
 	}
 
 
@@ -274,7 +278,7 @@ simulate(char* board, int rows, int columns){
 
 
 
-
+//	printf("The cell is %c \n", board[i]);
 
 
 

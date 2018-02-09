@@ -7,6 +7,6 @@
 //#include"simLogic.c"
 
 
-int simulate(char* board, int rows, int columns);
+int simulate(char** boardx, int rows, int columns);
 int displayBoard(char** board, int rows, int columns);
 #endif
