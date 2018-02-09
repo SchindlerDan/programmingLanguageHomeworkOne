@@ -11,8 +11,8 @@
 
 
 
-simulate(char** boardx, int rows, int columns){
-	char* board = *boardx;
+simulate(char* board, int rows, int columns){
+	//char* board = *boardx;
 	int size = (rows * columns);
 	int i= 0;
 	//this for loop will have several if statements. Each if statement is used to help prevent an index out of bounds error. example: if( i < columns) then don't check for any above cells
@@ -27,7 +27,7 @@ simulate(char** boardx, int rows, int columns){
 	//printf("we made it to simLogic!\n");
 	//printf("%c is the characer on the board\n", board[1]);
 	for(i = 0; i < size; i++){
-		 printf("The cell is %c \n", board[i]);
+//		 printf("The cell is %c \n", board[i]);
 	//	printf("does this print?\n");
 		//used to track number of living cells nearby
 		count = 0;
@@ -38,7 +38,7 @@ simulate(char** boardx, int rows, int columns){
 	//		printf("1\n");
 	//		printf("%c is the character in the board\n", board[1]);
 			if(board[1] == 111){
-				
+
 				count++;
 			}
 			printf("2\n");
@@ -222,7 +222,7 @@ simulate(char** boardx, int rows, int columns){
 
 
 		}
-	
+
 		//these ifs will check the rest of the board. Spot 5 on a 3x3 grid
 		else{
 	//		 printf("On to the body of cell\n");
@@ -262,14 +262,13 @@ simulate(char** boardx, int rows, int columns){
 
 
 
-	printf("checking if a cell should live or die\n");
+	//printf("checking if a cell should live or die\n");
 	//these next two ifs decide if the cell changes states (from live to dead or the other way around)
 	if(board[i] == 'o' && count > 3 || count < 2){
-		board[i] == 'x';
-		printf("IT DIES");
+		board[i] = 'x';
 	}else if(board[i] == 'x' && count == 3){
-		board[i] == 'o';
-		printf("ITS ALIVE!");
+		board[i] = 'o';
+
 	}
 
 
@@ -282,24 +281,25 @@ simulate(char** boardx, int rows, int columns){
 
 
 
+	//return board;
 	return 1;
 }
 
 
 
-displayBoard(char** board, int rows, int columns){
+displayBoard(char* board, int rows, int columns){
 	int i, j;
 	for(i = 0; i < (rows * columns); i++){
 		//printf("%c", board[i]);
 		if(i % columns == 0){
 			printf("\n");
 		}
-		printf("%c", *board[i]);
+		printf("%c ", board[i]);
 
 
 
 	}
-
+	printf("\n");
 
 
 

@@ -9,7 +9,7 @@ int main(int argc, const char** argv)
     //int numRow = (int)argv[1];
     //int numCol = (int)argv[2];
 
-
+	printf("%d\n", argc);
 
     //used code from an assignment from CIS 241
     FILE *in, *out;
@@ -17,7 +17,6 @@ int main(int argc, const char** argv)
     //next three variables are pointers for the board as well as the previous board
     char** boardTotal;
     char* boardIndividual;
-    
 	char* boardBackup;
     char choice;
     int rows;
@@ -25,12 +24,16 @@ int main(int argc, const char** argv)
 	int i;
 	//boardTotal = malloc(1 * sizeof(char*));
 //to see if it starts on a load
-    if(argc>2)
+    if(argc>1)
     {
         //I wrote this  -emy
       char* filename = argv[1];
-	
-        read_file(filename, boardTotal);
+	boardTotal = malloc(sizeof(char*));
+	printf("\n calling read_file\n");
+	printf("attempting to read file %s\n", filename);
+        read_file(filename, &boardIndividual);
+	printf("\nread file done being called\n");
+	//boardIndividual = *boardTotal;
     }else{
     printf("Please enter the number of rows you would like: \n");
     scanf("%d", &rows);
@@ -39,26 +42,34 @@ int main(int argc, const char** argv)
 	printf("%d %d are the dimensions of your board", rows, columns);
     boardIndividual = (char *)malloc(rows * columns * sizeof(char));
     //boardTotal = &boardIndividual;
-    	for(i = 0; i < rows * columns; i++){
+  	for(i = 0; i < rows * columns; i++){
 		boardIndividual[i] = 120;
-		printf("%d \n", i);
-		printf("%c is the character in that index\n", boardIndividual[i]);
-		//printf("%u is the address of that index\n", boardIndividual[i]);
+//		printf("%d \n", i);
+//		printf("%c is the character in that index\n", boardIndividual[i]);
+//		//printf("%u is the address of that index\n", boardIndividual[i]);
 	}
-	boardIndividual[3] = 'o';
-	boardIndividual[0] = 'o';
-	boardIndividual[1] = 'o';
-	}	
-    int quit = 0;
+	
+	}
+	int quit = 0;
+    //int times = 0;
+    //for(times = 0; times < rows * columns; times++){
+//		if(times % (columns) == 0){
+//			printf("\n");
+//		}
+//		printf("%c ", boardIndividual[times]);
+
+//	}
+
+
     while(quit == 0)
     {
         //char choice;
         int times=0;
         //check for next input
-        printf("q to quit, w to write, a to add a living cell, r to run one time, m to run many times, l to load: \n");
+        printf("\nq to quit, w to write, a to add a living cell, r to run one time, m to run many times, l to load: \n");
         //take input entered
         //stack overflow to figure out how to ignore extra white space
-        i//https://stackoverflow.com/questions/20712572/how-to-ignore-whitespaces-in-fscanf
+        //https://stackoverflow.com/questions/20712572/how-to-ignore-whitespaces-in-fscanf
         scanf(" %c", &choice);
         //do the selection
         //
@@ -70,7 +81,7 @@ int main(int argc, const char** argv)
             quit=1;
         }
         else if(choice =='r'){
-            printf("hi");
+            //printf("hi");
             times=1;
         }else if(choice == 'm'){
             //it wont just take times but it will work if i do this
@@ -79,53 +90,59 @@ int main(int argc, const char** argv)
             scanf("%d", &input);
             times=input;
 	}else if(choice == 'w'){
-		fget(fileName, 100, stdin);
+		//used https://stackoverflow.com/questions/6282198/reading-string-from-input-with-space-character   
+		char* fileName = malloc(sizeof(char) * 100);
+		//fget(fileName, 100, stdin);
 		
-		
-		scanf("%[^\n]%*c", fileName);
-		boardBackup = malloc(2 + (sizeof(char) * rows * columns));
+		printf("please type in the file name complete with file type\n");	
+		scanf("%s", fileName);
+		boardBackup = malloc(sizeof(char) * ((rows * columns) + 2));
+		printf("You save a %d by %d map\n", rows, columns);
 		boardBackup[0] = rows;
 		boardBackup[1] = columns;
 		for(i = 0; i < (rows * columns); i++){
 			boardBackup[i + 2] = boardIndividual[i];
 		}
-		write_file(fileName, boardBackup, rows * columns);
+		write_file(fileName, boardBackup, (rows * columns) + 2);
 		printf("salutations friend, saving complete");
+		
+		free(fileName);
 	}else if(choice == 'a'){
 		int x;
 		int y;
-		char cont = 'y';
-		while('y' == cont || 'Y' == cont){
-			printf("Please enter the X coordinate");
+	//	char cont = 'y';
+	//	while('y' == cont || 'Y' == cont){
+			printf("\nPlease enter the X coordinate\n");
 			scanf("%d", &x);
-			printf("Please enter the Y coordinate");
+			printf("\nPlease enter the Y coordinate\n");
 			scanf("%d", &y);
 			boardIndividual[(y * columns) + x] = 'o';	
-	}	
+//			displayBoard(boardIndividual, rows, columns);
+	//}	
 		
-		printf("Let us get this party started");
-		displayBoard(&boardIndividual, rows, columns);
+//		printf("\nLet us get this party started\n");
+//		displayBoard(boardIndividual, rows, columns);
 	}//removed load here because we already have load as a command line input
 	//else if(choice == 'l'){
 	//	printf("Hello friendo");
 		
 	//}
 
-
         for(times;times>0;times--)
         {
-		printf("We made it to the loop\n");
-              simulate(&boardIndividual, rows, columns);
+		printf("\nWe made it to the loop\n");
+              simulate(boardIndividual, rows, columns);
             //for loop for checking death rates and breeding rates
         }
-	//displayBoard(&boardIndividual, rows, columns);
-	for(times = 0; times < rows * columns; times++){
-		if(times % (columns) == 0){
-			printf("\n");
-		}
-		printf("%c ", boardIndividual[times]);
 	
-	}
+	displayBoard(boardIndividual, rows, columns);
+//	for(times = 0; times < rows * columns; times++){
+//		if(times % (columns) == 0){
+//			printf("\n");
+//		}
+//		printf("%c ", boardIndividual[times]);
+
+//	}
     }
 
 	free(boardIndividual);

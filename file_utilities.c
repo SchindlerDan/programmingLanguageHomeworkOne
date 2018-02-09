@@ -1,13 +1,12 @@
 //I forgot that we needed to include the .h file -Dan
 #include "file_utilities.h"
 
-
-int read_file( char* filename, char** buffer)
-{
+int read_file( char* filename, char** buffer){
     //used some code from CIS 241
     FILE *in;
+	
 //TODO add a input to take in a string
-
+	printf("Do we make it to the load function?");
     in = fopen(filename, "r");
     if(in == NULL)
     {
@@ -16,9 +15,12 @@ int read_file( char* filename, char** buffer)
     }
     int columns;
     int rows;
-    fscanf(in,"%d", &columns);
+    //fscanf(in,"%d", &columns);
     fscanf(in, "%d", &rows);
-
+	fscanf(in, "%d", &columns);
+	rows = rows;
+	columns = columns;
+	printf("There are %d rows and %d columns in your file \n", rows, columns);
     //https://stackoverflow.com/questions/10575544/difference-between-array-type-and-array-allocated-with-malloc
     //used Stack Overflow to decide how to create the 2d arrayi
     char* map = malloc(rows * columns * sizeof(char));
@@ -39,25 +41,26 @@ int read_file( char* filename, char** buffer)
     free(*buffer);
     *buffer = map;
 
-    for(x = 0; x < rows; x++)
-    {
-        for(y = 0; y < columns; y++)
-        {
-            printf("%c", map[(x * rows) + y]);
-        }
-
-    }
+//    for(x = 0; x < rows; x++)
+//    {
+//        for(y = 0; y < columns; y++)
+//        {
+//            printf("%c", map[(x * rows) + y]);
+//        }
+//
+//    }
+    return 0;
 }
-
 
 
 int write_file( char* filename, char *buffer, int size)
 {
     //when we call this method from our main, we need to construct a new array in the main that includes the row and column numbers as the first two characters
     FILE *out;
+	printf("about to save a file of size %d\n", size);
     //Once again used some code from a CIS 241 assignment
     out =fopen(filename, "w");
-
+	printf("Do we make it to the save function?\n");
     if(out == NULL)
     {
         printf("File could not be found or created");
@@ -70,5 +73,5 @@ int write_file( char* filename, char *buffer, int size)
         fprintf(out, "%c", buffer[i]);
         fprintf(out, " ");
     }
-
+return 0;
 }
