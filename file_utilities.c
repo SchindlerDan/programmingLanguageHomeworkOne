@@ -33,10 +33,12 @@ int i = 0;
 	printf("\n saved rows = %d\n", rows);
 	(*buffer)[1] = columns;
 	printf("\n saved columns = %d\n", columns);
-
+	char temp = 'a';
 	for(i = 0; i < size; i++){
 //		printf("\n inside for loop, iteration %d\n", i);
-		fscanf(in, "%d", (*buffer)[i + 2]);
+//
+		fscanf(in, "%c ", &temp);
+		(*buffer)[i + 2] = temp;
 		printf("%c is the thing in spot %d\n", (*buffer)[i + 2], i);
 	}
 	printf("\n finished load for loop\n");
