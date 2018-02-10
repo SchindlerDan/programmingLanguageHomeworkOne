@@ -8,7 +8,7 @@ int i = 0;
 	
 	//free(*buffer);	
 //TODO add a input to take in a string
-	printf("Do we make it to the load function?");
+	printf("\nDo we make it to the load function?\n");
     in = fopen(filename, "r");
     printf("%s is the name of the file\n", filename);
 	if(in == NULL)
@@ -18,15 +18,36 @@ int i = 0;
     }
     int columns = 0;
     int rows = 0;
-    //fscanf(in,"%d", &columns);
+    
+	//fscanf(in,"%d", &columns);
     fscanf(in, "%c ", &rows);
 	fscanf(in, "%c ", &columns);
-		
-	
+	printf("\n the address of *buffer is %u\n", *buffer);	
+	free(*buffer);	
 	printf("There are %d rows and %d columns in your file \n", rows, columns);
-    //https://stackoverflow.com/questions/10575544/difference-between-array-type-and-array-allocated-with-malloc
+    	int size = rows * columns;
+	*buffer = malloc((size + 2) * sizeof(char));
+	printf("\n malloc just called. address is now %u\n", *buffer);
+	(*buffer)[0] = rows;
+
+	printf("\n saved rows\n");
+	(*buffer)[1] = columns;
+	printf("\n saved columns\n");
+
+	for(i = 0; i < size; i++){
+//		printf("\n inside for loop, iteration %d\n", i);
+		fscanf(in, "%c ", (*buffer)[i + 2]);
+	}
+	printf("\n finished load for loop\n");
+
+
+
+
+
+	//https://stackoverflow.com/questions/10575544/difference-between-array-type-and-array-allocated-with-malloc
     //used Stack Overflow to decide how to create the 2d arrayi
-    char* map = malloc(rows * columns * sizeof(char*));
+    /**
+	char* map = malloc(rows * columns * sizeof(char*));
 	//*buffer = malloc(rows * columns * sizeof(char));
 	for(i = 0; i < (rows * columns); i++){
 		map[i] = 'x';
@@ -74,7 +95,8 @@ int i = 0;
 //        }
 //
 //    }
-    return (rows * columns);
+ */
+    return 1; //(rows * columns);
 }
 
 
