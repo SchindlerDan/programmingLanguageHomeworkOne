@@ -40,29 +40,34 @@ int size;
 	//I wrote this  -emy
       char* filename = argv[1];
 	boardBackup = malloc(sizeof(char));
-	//boardTotal = malloc(sizeof(char));
+	
 	*boardTotal = boardBackup;
 	printf("\n calling read_file\n");        
 	printf("\n the address of *boardTotal is %u\n", *boardTotal);
 	printf("\n address of boardBackup is %u", boardBackup);
 	printf("\nattempting to read file %s\n", filename);
         size = read_file(filename, boardTotal);
-	
+
 	//size = read_file(filename, &boardIndividual);
-	boardIndividual = malloc(size * sizeof(char));
-	rows = boardBackup[0];
-	columns = boardBackup[1];
-	printf(" there are %d rows and %d columns \n");
+	//printf("%d size of board", size);
+	//boardIndividual = malloc(size * sizeof(char));
+	rows = (*boardTotal)[0];
+	columns = (*boardTotal)[1];
 	size = rows * columns;
+	boardIndividual = malloc(size * sizeof(char));
+	printf(" there are %d rows and %d columns \n");
+	//size = rows * columns;
+	printf("\n address of *boardTotal is %u\n", *boardTotal);
 	for(i = 0; i < size; i++){
-		boardIndividual[i] = boardBackup[i + 2];
-			
+		//boardIndividual[i] = boardBackup[i + 2];
+		boardIndividual[i] = (*boardTotal)[i + 2];	
 		printf("%c board individual\n", boardIndividual[i]);
 	}
 	printf("\nread file done being called\n");
 	//boardIndividual = *boardTotal;
 	printf("\n final address of boardIndividual is %u\n", boardIndividual);
-    	displayBoard(boardIndividual, rows, columns);
+    	printf("final address of boardBackup is %u\n", boardBackup);
+	displayBoard(boardIndividual, rows, columns);
 	}else{
 	size = 0;
     printf("Please enter the number of rows you would like: \n");

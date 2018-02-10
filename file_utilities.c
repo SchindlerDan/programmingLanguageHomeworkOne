@@ -6,7 +6,7 @@ int read_file( char* filename, char** buffer){
     FILE *in;
 int i = 0;
 	
-	//free(*buffer);	
+	free(*buffer);	
 //TODO add a input to take in a string
 	printf("\nDo we make it to the load function?\n");
     in = fopen(filename, "r");
@@ -23,20 +23,21 @@ int i = 0;
     fscanf(in, "%c ", &rows);
 	fscanf(in, "%c ", &columns);
 	printf("\n the address of *buffer is %u\n", *buffer);	
-	free(*buffer);	
+	//free(*buffer);	
 	printf("There are %d rows and %d columns in your file \n", rows, columns);
     	int size = rows * columns;
 	*buffer = malloc((size + 2) * sizeof(char));
 	printf("\n malloc just called. address is now %u\n", *buffer);
 	(*buffer)[0] = rows;
 
-	printf("\n saved rows\n");
+	printf("\n saved rows = %d\n", rows);
 	(*buffer)[1] = columns;
-	printf("\n saved columns\n");
+	printf("\n saved columns = %d\n", columns);
 
 	for(i = 0; i < size; i++){
 //		printf("\n inside for loop, iteration %d\n", i);
-		fscanf(in, "%c ", (*buffer)[i + 2]);
+		fscanf(in, "%d", (*buffer)[i + 2]);
+		printf("%c is the thing in spot %d\n", (*buffer)[i + 2], i);
 	}
 	printf("\n finished load for loop\n");
 
