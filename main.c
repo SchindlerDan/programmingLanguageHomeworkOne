@@ -22,27 +22,42 @@ int main(int argc, const char** argv)
     int rows;
     int columns;
 	int i;
+int size;
+ 
 	//boardTotal = malloc(1 * sizeof(char*));
 //to see if it starts on a load
     if(argc>1)
     {
-        //I wrote this  -emy
-      char* filename = argv[1];
+	
+	//boardIndividual = malloc(sizeof(char) * 1);
+	//boardIndividual[0] = 'x';
 	boardTotal = malloc(sizeof(char*));
+        //*boardTotal = boardIndividual;
+	//boardIndividual = malloc(sizeof(char));
+	*boardTotal = boardIndividual;
+	printf("The address of *boardTotal is %u and the address of boardIndividual is %u\n", *boardTotal, boardIndividual);
+	//printf("\n The address of the &boardIndividual is %u\n", &boardIndividual);
+	//I wrote this  -emy
+      char* filename = argv[1];
+	//boardTotal = malloc(sizeof(char));
 	printf("\n calling read_file\n");
 	printf("attempting to read file %s\n", filename);
-        read_file(filename, &boardIndividual);
+        size = read_file(filename, boardTotal);
+	//size = read_file(filename, &boardIndividual);
 	printf("\nread file done being called\n");
 	//boardIndividual = *boardTotal;
+	printf("\n final address of boardIndividual is %u\n", boardIndividual);
     }else{
+	size = 0;
     printf("Please enter the number of rows you would like: \n");
     scanf("%d", &rows);
     printf("Please enter the number of columns you would like: \n");
     scanf("%d", &columns);
+	size = rows * columns;
 	printf("%d %d are the dimensions of your board", rows, columns);
-    boardIndividual = (char *)malloc(rows * columns * sizeof(char));
+    boardIndividual = (char *)malloc(size * sizeof(char));
     //boardTotal = &boardIndividual;
-  	for(i = 0; i < rows * columns; i++){
+  	for(i = 0; i < size; i++){
 		boardIndividual[i] = 120;
 //		printf("%d \n", i);
 //		printf("%c is the character in that index\n", boardIndividual[i]);
@@ -50,6 +65,8 @@ int main(int argc, const char** argv)
 	}
 	
 	}
+	printf("\n%d\n",size);
+	
 	int quit = 0;
     //int times = 0;
     //for(times = 0; times < rows * columns; times++){
@@ -96,14 +113,14 @@ int main(int argc, const char** argv)
 		
 		printf("please type in the file name complete with file type\n");	
 		scanf("%s", fileName);
-		boardBackup = malloc(sizeof(char) * ((rows * columns) + 2));
+		boardBackup = malloc(sizeof(char) * ((size) + 2));
 		printf("You save a %d by %d map\n", rows, columns);
 		boardBackup[0] = rows;
 		boardBackup[1] = columns;
-		for(i = 0; i < (rows * columns); i++){
+		for(i = 0; i < (size); i++){
 			boardBackup[i + 2] = boardIndividual[i];
 		}
-		write_file(fileName, boardBackup, (rows * columns) + 2);
+		write_file(fileName, boardBackup, (size) + 2);
 		printf("salutations friend, saving complete");
 		
 		free(fileName);

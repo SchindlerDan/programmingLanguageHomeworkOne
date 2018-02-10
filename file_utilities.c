@@ -4,7 +4,9 @@
 int read_file( char* filename, char** buffer){
     //used some code from CIS 241
     FILE *in;
-int i = 0;	
+int i = 0;
+	
+	//free(*buffer);	
 //TODO add a input to take in a string
 	printf("Do we make it to the load function?");
     in = fopen(filename, "r");
@@ -19,12 +21,13 @@ int i = 0;
     //fscanf(in,"%d", &columns);
     fscanf(in, "%c ", &rows);
 	fscanf(in, "%c ", &columns);
-	
+		
 	
 	printf("There are %d rows and %d columns in your file \n", rows, columns);
     //https://stackoverflow.com/questions/10575544/difference-between-array-type-and-array-allocated-with-malloc
     //used Stack Overflow to decide how to create the 2d arrayi
-    char* map = malloc(rows * columns * sizeof(char));
+    char* map = malloc(rows * columns * sizeof(char*));
+	//*buffer = malloc(rows * columns * sizeof(char));
 	for(i = 0; i < (rows * columns); i++){
 		map[i] = 'x';
 	}
@@ -32,30 +35,36 @@ int i = 0;
     int x = 0;
     int y = 0;
 	printf("hello there\n");
+	printf("\nAddress of *buffer is %u", *buffer);
     //aasked Brendon Murthum and Tanner Gibson about fscanf
     //went to tutorialspoint.com to confirm that C for loops are created like java and C++ for loops
     int test = 0;
 	for(x = 0; x < columns; x++ )
     {
         for(y = 0; y < rows; y++)
-        {
-            fscanf(in, "%c ", &map[(y * rows) + x]);
+      {
+	//       	fscanf(in, "%c ", &(map[(y * rows) + x]));
+//		fscanf(in, "%c ", (*buffer)[(y * rows) + x]);
         	printf("%c\n", map[(y * rows) + x]);
+//      		printf("%c ", (*buffer)[(y * rows) + x]);
 	}
     }
-	printf("howdy friendo\n");
-    *buffer = malloc(sizeof(char) * (rows * columns));
+
+	printf("\nhowdy friendo\n");
+	//*buffer = map;
+	printf("\n in file utilities, final address of *buffer is %u and map is %u\n", *buffer, map);
+    //*buffer = malloc(sizeof(char) * (rows * columns));
 	printf("greetings comrade\n");	
-	for(i = 0; i < rows * columns; i++){
-		*buffer[i] = 'x';
-	}
-    	for(i = 0; i < (rows * columns); i +=1){
+//	for(i = 0; i < rows * columns; i++){
+//		*buffer[i] = 'x';
+//	}
+ 	for(i = 0; i < (rows * columns); i +=1){
 		//printf("%c\n", *buffer[i]);
-		printf("%c\n", map[i]);
-		*buffer[i] = map[i];
-	printf("%d\n", i);
+//		printf("%c", map[i]);
+		(*buffer)[i] = map[i];
+//	printf(" %d\n", i);
 	}
-	free(map);
+//	free(map);
 
 //    for(x = 0; x < rows; x++)
 //    {
@@ -65,7 +74,7 @@ int i = 0;
 //        }
 //
 //    }
-    return 0;
+    return (rows * columns);
 }
 
 
