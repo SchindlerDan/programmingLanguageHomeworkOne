@@ -8,9 +8,9 @@ int i = 0;
 	
 	free(*buffer);	
 //TODO add a input to take in a string
-	printf("\nDo we make it to the load function?\n");
+//	printf("\nDo we make it to the load function?\n");
     in = fopen(filename, "r");
-    printf("%s is the name of the file\n", filename);
+//    printf("%s is the name of the file\n", filename);
 	if(in == NULL)
     {
         printf("This file could not be found");
@@ -22,26 +22,26 @@ int i = 0;
 	//fscanf(in,"%d", &columns);
     fscanf(in, "%c ", &rows);
 	fscanf(in, "%c ", &columns);
-	printf("\n the address of *buffer is %u\n", *buffer);	
+//	printf("\n the address of *buffer is %u\n", *buffer);	
 	//free(*buffer);	
-	printf("There are %d rows and %d columns in your file \n", rows, columns);
+//	printf("There are %d rows and %d columns in your file \n", rows, columns);
     	int size = rows * columns;
 	*buffer = malloc((size + 2) * sizeof(char));
-	printf("\n malloc just called. address is now %u\n", *buffer);
+//	printf("\n malloc just called. address is now %u\n", *buffer);
 	(*buffer)[0] = rows;
 
-	printf("\n saved rows = %d\n", rows);
+//	printf("\n saved rows = %d\n", rows);
 	(*buffer)[1] = columns;
-	printf("\n saved columns = %d\n", columns);
+//	printf("\n saved columns = %d\n", columns);
 	char temp = 'a';
 	for(i = 0; i < size; i++){
 //		printf("\n inside for loop, iteration %d\n", i);
 //
 		fscanf(in, "%c ", &temp);
 		(*buffer)[i + 2] = temp;
-		printf("%c is the thing in spot %d\n", (*buffer)[i + 2], i);
+//		printf("%c is the thing in spot %d\n", (*buffer)[i + 2], i);
 	}
-	printf("\n finished load for loop\n");
+//	printf("\n finished load for loop\n");
 
 
 

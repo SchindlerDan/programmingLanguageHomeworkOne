@@ -9,7 +9,7 @@ int main(int argc, const char** argv)
     //int numRow = (int)argv[1];
     //int numCol = (int)argv[2];
 
-	printf("%d\n", argc);
+//	printf("%d\n", argc);
 
     //used code from an assignment from CIS 241
     FILE *in, *out;
@@ -42,10 +42,10 @@ int size;
 	boardBackup = malloc(sizeof(char));
 	
 	*boardTotal = boardBackup;
-	printf("\n calling read_file\n");        
-	printf("\n the address of *boardTotal is %u\n", *boardTotal);
-	printf("\n address of boardBackup is %u", boardBackup);
-	printf("\nattempting to read file %s\n", filename);
+	//printf("\n calling read_file\n");        
+	//printf("\n the address of *boardTotal is %u\n", *boardTotal);
+	//printf("\n address of boardBackup is %u", boardBackup);
+	//printf("\nattempting to read file %s\n", filename);
         size = read_file(filename, boardTotal);
 
 	//size = read_file(filename, &boardIndividual);
@@ -55,18 +55,18 @@ int size;
 	columns = (*boardTotal)[1];
 	size = rows * columns;
 	boardIndividual = malloc(size * sizeof(char));
-	printf(" there are %d rows and %d columns \n");
+//	printf(" there are %d rows and %d columns \n");
 	//size = rows * columns;
-	printf("\n address of *boardTotal is %u\n", *boardTotal);
+	//printf("\n address of *boardTotal is %u\n", *boardTotal);
 	for(i = 0; i < size; i++){
 		//boardIndividual[i] = boardBackup[i + 2];
 		boardIndividual[i] = (*boardTotal)[i + 2];	
-		printf("%c board individual\n", boardIndividual[i]);
+//		printf("%c board individual\n", boardIndividual[i]);
 	}
-	printf("\nread file done being called\n");
+//	printf("\nread file done being called\n");
 	//boardIndividual = *boardTotal;
-	printf("\n final address of boardIndividual is %u\n", boardIndividual);
-    	printf("final address of boardBackup is %u\n", boardBackup);
+//	printf("\n final address of boardIndividual is %u\n", boardIndividual);
+//    	printf("final address of boardBackup is %u\n", boardBackup);
 	displayBoard(boardIndividual, rows, columns);
 	}else{
 	size = 0;
@@ -86,7 +86,7 @@ int size;
 	}
 	
 	}
-	printf("\n%d\n",size);
+//	printf("\n%d\n",size);
 	
 	int quit = 0;
     //int times = 0;
@@ -104,7 +104,7 @@ int size;
         //char choice;
         int times=0;
         //check for next input
-        printf("\nq to quit, w to write, a to add a living cell, r to run one time, m to run many times, l to load: \n");
+        printf("\nq to quit, w to write, a to add a living cell, r to run one time, m to run many times: \n");
         //take input entered
         //stack overflow to figure out how to ignore extra white space
         //https://stackoverflow.com/questions/20712572/how-to-ignore-whitespaces-in-fscanf
@@ -117,6 +117,7 @@ int size;
         {
             printf("bye\n");
             quit=1;
+		exit(1);
         }
         else if(choice =='r'){
             //printf("hi");
@@ -168,7 +169,7 @@ int size;
 
         for(times;times>0;times--)
         {
-		printf("\nWe made it to the loop\n");
+//		printf("\nWe made it to the loop\n");
               simulate(boardIndividual, rows, columns);
             //for loop for checking death rates and breeding rates
         }

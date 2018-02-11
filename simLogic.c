@@ -41,11 +41,11 @@ simulate(char* board, int rows, int columns){
 
 				count++;
 			}
-			printf("2\n");
+//			printf("2\n");
 			if(board[columns] == 'o'){
 				count++;
 			}
-			printf("3\n");
+//			printf("3\n");
 			if(board[i + columns + 1] == 'o'){//this checks diagonally down right. spot '5' on a 3x3 grid
 				count++;
 
@@ -169,7 +169,7 @@ simulate(char* board, int rows, int columns){
 		else if(i != 0 && i != size - (columns) && i % columns == 0){
 	//		 printf("sixth special case\n");
 			if(board[i + 1] == 'o'){
-				printf("inside if statement\n");
+//				printf("inside if statement\n");
                                 count++;
                         }
 	//		printf("1\n");
