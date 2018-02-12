@@ -13,7 +13,7 @@
  *
  *@return int returns the size of the board.
  * */
-int read_file(char* filename, char** buffer);
+int read_file(const char* filename, char** buffer);
 
 /**This method is used to save a file
  *

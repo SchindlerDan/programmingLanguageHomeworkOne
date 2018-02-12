@@ -16,7 +16,7 @@ int main(int argc, const char** argv)
     char* boardIndividual;
     char* boardBackup;
     /**Used for user input for desired file names. Used in save and load. */
-    char* filename;
+    //char* filename;
     /**Used to track user choice: saving, adding a cell, quiting, or running the simulation */
     char choice;
     /**Next two variables hold the number of rows and columns in the board respectively */
@@ -38,15 +38,16 @@ int main(int argc, const char** argv)
     if(argc>1)
     {
 
-        
+        const char* filename;  
         boardTotal = malloc(sizeof(char*));
         filename = argv[1];
+        //sscanf(argv[1], "%s", &filename);
         boardBackup = malloc(sizeof(char));
 
         *boardTotal = boardBackup;
         
-        size = read_file(filename, boardTotal);
-
+        //size = read_file(filename, boardTotal);
+        read_file(filename, boardTotal);
         
         rows = (*boardTotal)[0];
         columns = (*boardTotal)[1];
@@ -141,7 +142,8 @@ int main(int argc, const char** argv)
             
         }
         else if(choice == 'w')
-        {
+        {   
+            char* filename;
             //used https://stackoverflow.com/questions/6282198/reading-string-from-input-with-space-character
             filename = malloc(sizeof(char) * 100);
             

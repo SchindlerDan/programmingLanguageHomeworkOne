@@ -1,7 +1,7 @@
 
 #include "file_utilities.h"
 
-int read_file( char* filename, char** buffer)
+int read_file(const char* filename, char** buffer)
 {
     //used some code from CIS 241
     /**Used to track the file we're pulling information from */
