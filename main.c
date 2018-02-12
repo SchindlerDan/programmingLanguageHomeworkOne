@@ -78,9 +78,11 @@ int main(int argc, const char** argv)
         * */
         //rows = atoi(argv[1]);
         //columns = atoi(argv[2]);
-        sscanf(argv[1], "%d", &rows);
-        sscanf(argv[2], "%d", &columns);
-        size = rows * columns;
+        //sscanf(argv[1], "%d", &rows);
+        //sscanf(argv[2], "%d", &columns);
+        rows = atoi(argv[1]);
+	columns = atoi(argv[2]);
+	size = rows * columns;
         printf("\nThe dimensions of your board are %d by %d\n", rows, columns);
         boardIndividual = malloc(size * sizeof(char));
         for(i = 0; i < size; i++)
