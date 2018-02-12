@@ -302,7 +302,7 @@ simulate(char* board, int rows, int columns)
 
         
         //these next two ifs decide if the cell changes states (from live to dead or the other way around)
-        if(board[i] == 'o' && count > 3 || count < 2)
+        if(board[i] == 'o' && (count > 3 || count < 2))
         {
             board[i] = 'x';
         }
